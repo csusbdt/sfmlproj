@@ -1,3 +1,8 @@
 xcode/sfml2
 .DS_Store
+vs2010/sam/Debug
+vs2010/sam/ipch
+vs2010/sam/*.sdf
+vs2010/sam/*.suo
+
 
