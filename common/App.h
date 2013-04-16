@@ -1,6 +1,8 @@
 #ifndef APP_APP_H
 #define APP_APP_H
 
+#include "precompile.h"
+
 class App
 {
 public:
