@@ -47,10 +47,11 @@ In the next screen, select the following build options.
 
     BUILD_SHARED_LIBS
     SFML_BUILD_DOC                 // requires doxygen
-	SFML_USE_STATIC_STD_LIBS
 
 See [these instruction](http://www.sfml-dev.org/tutorials/2.0/compile-with-cmake.php) 
 for more explanation.
+
+Press _Configure_ again.
  
 Press _Generate_.
  
@@ -73,7 +74,61 @@ The installation will add the following folder.
 	
 ## Create Visual Studio project
 
+The following instructions are for dynamic linking with SFML.
+
 Open Visual Studio Express and create an SFML App project under $PROJ/vs2010.
 
 See [this tutorial](http://sfml-dev.org/tutorials/2.0/start-vc.php) for instructions on how to
-create a project.
+create a project.  Here is how I did it.
+
+Create a C++ Win32 project called _sam_.  I specified a location of _$PROJ/cv2010_
+and I selected to not create a folder for the solution.
+	
+Set the following include path.
+
+    $(ProjectDir)..\sfml2\SFML\include
+
+Set the following libraries:
+
+    sfml-graphics.lib
+	sfml-window.lib
+	sfml-system.lib
+	sfml-main.lib
+
+Set the following library path.
+	
+	$(ProjectDir)..\sfml2\build\lib
+
+Add the following to Environment under Debugging.
+
+    PATH=$(PATH);$(ProjectDir)..\sfml2\build\lib
+	
+Replace ain.cpp with the following.
+
+''''
+#include <SFML/Graphics.hpp>
+
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear();
+        window.draw(shape);
+        window.display();
+    }
+
+    return 0;
+}
+''''
+
