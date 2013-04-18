@@ -1,6 +1,8 @@
 // See google style guide: http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
 
 #include <assert.h>
+
+#include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"
 
 // A macro to disallow the copy constructor and operator= functions

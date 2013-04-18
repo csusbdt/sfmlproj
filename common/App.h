@@ -8,6 +8,7 @@ class App
 public:
 	App() { }
 	void run();
+    std::string getResourcePath();  // implemented in platform code (outside of common)
 
 private:
 	DISALLOW_COPY_AND_ASSIGN(App);
