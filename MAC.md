@@ -2,18 +2,22 @@
 
 ## Overview
 
-This doc explains how to set up the contents of the xcode folder,
-which is used to store files needed for building for OS X targets.
+This doc explains how to build SFML under OS X and
+how to set up an Xcode project for the project.
 
 ## Prerequisites
 
-- Xcode
+- Xcode (Command line tools need to be installed; see below.)
 - CMake
 - Doxygen (optional; needed only to generate docs)
 
+To install the Xcode command line tools, start Xcode and select
+_Xcode ... Preferences_, then select the _Downloads_ tab, and
+then install _Command Line Tools_ if not already installed.
+
 ## Clone and build SFML 2
 
-Clone SFML 2.
+Clone SFML 2 outside of $PROJ.
 
     mkdir sfml2
     cd sfml2
@@ -22,6 +26,34 @@ Clone SFML 2.
 Configure SFML.
 
     mkdir build
+
+Run cmake.
+
+    cmake-gui
+
+Set the source code folder by browsing to _sfml2/SFML_.
+
+Set the destination folder by browsing to _sfml2/build_.
+
+Click on the _Configure_ button.
+
+For the project generator, choose _Unix Makefiles_ (not _Xcode_) and select to
+use default native compilers.
+
+Make the following settings.
+
+    BUILD_SHARED_LIBS        checked
+    CMAKE_BUILD_TYPE         Release
+    CMAKE_OSX_ARCHITECTURES  i386;x86_64
+
+Leave other checkable options unchecked and leave other text fields set
+to the default values.
+
+The CMAKE_OSX_ARCHITECTURES setting results in universal binaries.  
+See [this page](http://www.mjbshaw.com/2013/02/building-sfml-2-with-c11-on-os-x.html).
+
+
+
 
 Run the gui version of cmake and follow 
 [these instructions](http://www.sfml-dev.org/tutorials/2.0/compile-with-cmake.php) 
