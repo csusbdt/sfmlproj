@@ -45,40 +45,32 @@ Make the following settings.
     BUILD_SHARED_LIBS        checked
     CMAKE_BUILD_TYPE         Release
     CMAKE_OSX_ARCHITECTURES  i386;x86_64
+    SFML_BUILD_FRAMEWORKS    unchecked
 
-Leave other checkable options unchecked and leave other text fields set
-to the default values.
+Check or uncheck other options as desired.
 
 The CMAKE_OSX_ARCHITECTURES setting results in universal binaries.  
 See [this page](http://www.mjbshaw.com/2013/02/building-sfml-2-with-c11-on-os-x.html).
 
+See [these instructions](http://www.sfml-dev.org/tutorials/2.0/compile-with-cmake.php) 
+for more information on building SFML.
 
-
-
-Run the gui version of cmake and follow 
-[these instructions](http://www.sfml-dev.org/tutorials/2.0/compile-with-cmake.php) 
-to create the build files. I selected the following.
-
-    BUILD_SHARED_LIBS
-    SFML_BUILD_FRAMEWORKS
-    SFML_BUILD_EXAMPLES
-    SFML_INSTALL_XCODE4_TEMPLATES 
-    SFML_BUILD_DOC                 // requires doxygen
-
-For the source folder, use $PROJ/osx/sfml2/SFML; 
-for the destination folder, use $PROJ/osx/sfml2/build.
- 
 Build and install.
 
     cd build
     make
     sudo make install
 
-The installation will add templates to the following folder.
+The installation will add templates to the following location.
+
+    /Library/Developer/Xcode/Templates/SFML
+
+The installation will add sndfile.framework and freetype.framework 
+to the folder specified by CMAKE_INSTALL_FRAMEWORK_PREFIX.  
+The default is the following.
 
     /Library/Frameworks
 
-It leaves the framework folders under $PROJ/xcode/sfml2/build.
 
 ## Create xcode project
 
