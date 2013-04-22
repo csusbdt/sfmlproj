@@ -67,18 +67,36 @@ The installation will add templates to the following location.
 
 The installation will add sndfile.framework and freetype.framework 
 to the folder specified by CMAKE_INSTALL_FRAMEWORK_PREFIX.  
-The default is the following.
+If that setting is not specified, then the default is the following.
 
     /Library/Frameworks
 
 
 ## Create xcode project
 
-Open xcode and create an SFML App project under $PROJ/osx.
-You need to check the boxes to include the window module, audio module and
-graphics modules to get the starter code to build.
+THIS DOES NOT WORK
 
-I had to change the architecture to _64-bit Intel_ under Build Settings.
-I don't know how to build for other architectures; it might be the way
-SFML was built.
+Open xcode and create an SFML App project under $PROJ/mac.
+
+Fill out the product name, organization name and company identifier fields.
+
+Leave the C++ Compiler and Standard Library field at the default
+setting of _C++98 with Clang and libstdc++_.
+
+Leave the architectures field set to the default setting of _Universal_.
+
+Set the SFML Binarys to _Dylibs_.  The default value of _Frameworks_ will
+
+Leave the checked modules checked to include support for everything.
+Alternatively, uncheck modules as desired.
+
+Create folder $PROJ/sfml2.
+Copy the include and Frameworks folders from the sfml build process into $PROJ/sfml2.
+These will be added to version control so that other developers don't need to 
+get or build SFML.
+
+In the Xcode project, go to Build Phases and add the sndfile and freetype Frameworks
+under the section _Link Binaries with Libraries_.
+
+
 
